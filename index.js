@@ -20,10 +20,6 @@ app.get("/api/reservation", (req, res) => {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
-app.get("/api/reservation", (req, res) => {
-  res.sendFile("reserve.html");
-});
-
 app.post("/api/reservation", function(req, res) {
   var newReservation = req.body;
 
