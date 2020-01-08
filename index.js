@@ -20,6 +20,10 @@ app.get("/api/reservation", (req, res) => {
   res.sendFile(path.join(__dirname, "reserve.html"));
 });
 
+/**
+ * Adds a new reservation to either reservations or waitlist
+ * and returns
+ */
 app.post("/api/reservation", function(req, res) {
   var newReservation = req.body;
 
@@ -29,18 +33,35 @@ app.post("/api/reservation", function(req, res) {
   const id = newReservation.id;
 
   const customer = new Customer(name, phone, email, id);
-  reservations.length < 5 ? reservations.push(customer) : waitlists.push(customer);
-  res.json(newReservation);
+  let which;
+  if (reservations.length < 5) {
+    which = "reserved";
+    reservations.push(customer);
+  } else {
+    which = "waitlist";
+    waitlists.push(customer);
+  }
+
+  res.json(which);
 });
 
+/**
+ * Shows reservations as JSON
+ */
 app.get("/api/tables2", (req, res) => {
   res.json(reservations);
 });
 
+/**
+ * Shows reservations and wait list and return HTML page
+ */
 app.get("/api/tables", (req, res) => {
   res.sendFile(path.join(__dirname, "viewTable.html"));
 });
 
+/**
+ * Shows wait list as JSON
+ */
 app.get("/api/waitlists", (req, res) => {
   res.json(waitlists);
 });
