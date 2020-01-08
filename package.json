@@ -1,0 +1,23 @@
+{
+  "name": "table-reservation",
+  "version": "1.0.0",
+  "description": "This is a table reservation application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aritse/table-reservation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aritse/table-reservation/issues"
+  },
+  "homepage": "https://github.com/aritse/table-reservation#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
