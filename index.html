@@ -47,17 +47,17 @@
                font-size: 18px;
           }
           #viewTables{
-               background: #c53e3e;
-          }
-          #reserve{
                background: hsl(209, 61%, 48%);
           }
+          #reserve{
+               background: #c53e3e;
+          }
           #viewTables:hover{
-               background: #792626;
+               background: #1c4870;
                cursor: pointer;
           }
           #reserve:hover{
-               background: #1c4870;
+               background: #792626;
                cursor: pointer;
           }
      </style>
@@ -75,8 +75,13 @@
                <br>
 
                <div class="button-container">
-                    <button id="viewTables" class="homeBtns">View Tables</button>
-                    <button id="reserve" class="homeBtns">Make Reservation</button>
+                    <a href="/api/tables">
+                         <button id="viewTables" class="homeBtns">View Tables</button>
+                    </a>
+
+                    <a href="/api/reservation">
+                         <button id="reserve" class="homeBtns">Make Reservation</button>
+                    </a>
                </div>
           </div>
      </div>

@@ -42,7 +42,7 @@ app.get("/api/tables2", (req, res) => {
 });
 
 app.get("/api/tables", (req, res) => {
-  res.sendFile(path(__dirname, "viewTable.html"));
+  res.sendFile(path.join(__dirname, "viewTable.html"));
 });
 
 app.get("/api/waitlists", (req, res) => {
