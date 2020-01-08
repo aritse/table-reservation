@@ -93,10 +93,10 @@
                box-sizing: border-box;
           }
 
-          .submitBtn{
+          .submitBtn {
                background: #307dc5;
           }
-          
+
           .submitBtn:hover {
                background: #1c4870;
                cursor: pointer;
@@ -141,9 +141,36 @@
                <label for="email">Email</label>
                <input type="text" id="email" placeholder="Enter your email">
 
+               <label for="ID">Unique ID</label>
+               <input type="text" id="ID" placeholder="Enter your email">
+
                <button class="Btns submitBtn">Submit</button>
           </form>
      </div>
+
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+     <script>
+          let submit = $(".submitBtn");
+          
+          submit.click((event)=>{
+               event.preventDefault();
+
+               let name = $("#name").val();
+               let phone = $("#phoneNum").val();
+               let email = $("#email").val();
+               let id = $("#ID").val();
+
+               const tableData = {
+
+                    name, phone, email, id
+               }
+               
+               $.post("/api/reservation",tableData).then(data=>{
+                    console.log(data);
+               });
+          });
+     </script>
 </body>
 
 </html>
