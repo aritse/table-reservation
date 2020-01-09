@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,36 +9,42 @@
      <title>View Tables</title>
 
      <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
-     
+
      <style>
-          *{
+          * {
                margin: 0;
                padding: 0;
                box-sizing: border-box;
                font-family: 'Josefin Sans', sans-serif;
           }
-          .main{
+
+          .main {
                margin: auto;
                padding-top: 30px;
                width: 70vw;
                background: lightgray;
                border-radius: 3px;
           }
-          .content{
+
+          .content {
                width: 90%;
                margin: auto;
                padding-top: 10px;
                padding-bottom: 10px;
           }
-          h1.title, h2.message{
+
+          h1.title,
+          h2.message {
                text-align: center;
           }
-          .button-container{
+
+          .button-container {
                display: flex;
                justify-content: center;
                flex-wrap: wrap;
           }
-          .Btns{
+
+          .Btns {
                padding: 10px;
                border: none;
                border-radius: 5px;
@@ -46,17 +53,21 @@
                text-align: center;
                font-size: 18px;
           }
-          #reserve{
+
+          #reserve {
                background: #c53e3e;
           }
-          #reserve:hover{
+
+          #reserve:hover {
                background: #792626;
                cursor: pointer;
           }
+
           #home {
                color: black;
                background: #ffffff;
           }
+
           #home:hover {
                background: #b1b1b1;
                cursor: pointer;
@@ -70,7 +81,6 @@
                background: lightgrey;
                border-radius: 3px;
           }
-
      </style>
 
 </head>
@@ -113,11 +123,15 @@
      <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
      <script>
-          $.get("/api/tables2").then(data=>{
-               console.log(data);
+          $.get("/api/viewReservations").then(data => {
+               console.log("Reservations:", data);
+          });
+          $.get("/api/viewWaitlist").then(data => {
+               console.log("Waitlist:", data);
           });
 
           // make dynamic html and populate it with data 
      </script>
 </body>
+
 </html>

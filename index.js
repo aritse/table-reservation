@@ -28,7 +28,7 @@ app.post("/api/reservation", (req, res) => {
     status = "Your reservation is confirmed.";
   } else {
     waitlist.push(customer);
-    status = "You are #" + (waitlist.length + 1) + " on the waitlist";
+    status = "You are #" + waitlist.length + " on the waitlist";
   }
   res.send(status);
 });
