@@ -1,71 +1,34 @@
 const Customer = require("./lib/Customer");
-const express = require("express");
 const path = require("path");
 
+const express = require("express");
 const app = express();
-
-const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log("listening on", PORT));
+
 const reservations = [];
-const waitlists = [];
+const waitlist = [];
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
+app.get("/", (req, res) => res.sendFile(path.join(__dirname, "index.html")));
+app.get("/api/reservation", (req, res) => res.sendFile(path.join(__dirname, "reserve.html")));
+app.get("/api/tables", (req, res) => res.sendFile(path.join(__dirname, "viewTable.html")));
+app.get("/api/viewReservations", (req, res) => res.json(reservations));
+app.get("/api/viewWaitlist", (req, res) => res.json(waitlist));
 
-app.get("/api/reservation", (req, res) => {
-  res.sendFile(path.join(__dirname, "reserve.html"));
-});
-
-/**
- * Adds a new reservation to either reservations or waitlist
- * and returns
- */
-app.post("/api/reservation", function(req, res) {
-  var newReservation = req.body;
-
-  const name = newReservation.name;
-  const phone = newReservation.phone;
-  const email = newReservation.email;
-  const id = newReservation.id;
-
-  const customer = new Customer(name, phone, email, id);
-  let which;
+app.post("/api/reservation", (req, res) => {
+  const { name, phone, email } = req.body;
+  const customer = new Customer(name, phone, email);
+  let status;
   if (reservations.length < 5) {
-    which = "reserved";
     reservations.push(customer);
+    status = "Your reservation is confirmed.";
   } else {
-    which = "waitlist";
-    waitlists.push(customer);
+    waitlist.push(customer);
+    status = "You are #" + (waitlist.length + 1) + " on the waitlist";
   }
-
-  res.json(which);
-});
-
-/**
- * Shows reservations as JSON
- */
-app.get("/api/tables2", (req, res) => {
-  res.json(reservations);
-});
-
-/**
- * Shows reservations and wait list and return HTML page
- */
-app.get("/api/tables", (req, res) => {
-  res.sendFile(path.join(__dirname, "viewTable.html"));
-});
-
-/**
- * Shows wait list as JSON
- */
-app.get("/api/waitlists", (req, res) => {
-  res.json(waitlists);
-});
-
-app.listen(PORT, () => {
-  console.log("listening on", PORT);
+  res.send(status);
 });
