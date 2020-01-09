@@ -32,3 +32,9 @@ app.post("/api/reservation", (req, res) => {
   }
   res.send(status);
 });
+
+app.post("/api/clear", (req, res) => {
+  reservations.length = 0;
+  waitlist.length = 0;
+  res.send("Reservations and wait list are cleared.");
+});
