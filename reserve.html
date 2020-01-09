@@ -141,9 +141,6 @@
                <label for="email">Email</label>
                <input type="text" id="email" placeholder="Enter your email">
 
-               <label for="ID">Unique ID</label>
-               <input type="text" id="ID" placeholder="Enter your email">
-
                <button class="Btns submitBtn">Submit</button>
           </form>
      </div>
@@ -152,8 +149,8 @@
 
      <script>
           let submit = $(".submitBtn");
-          
-          submit.click((event)=>{
+
+          submit.click((event) => {
                event.preventDefault();
 
                let name = $("#name").val();
@@ -165,8 +162,8 @@
 
                     name, phone, email, id
                }
-               
-               $.post("/api/reservation",tableData).then(data=>{
+
+               $.post("/api/reservation", tableData).then(data => {
                     console.log(data);
                });
           });
